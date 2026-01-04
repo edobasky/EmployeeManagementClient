@@ -5,6 +5,7 @@ import { EmployeeForm } from './pages/employee-form/employee-form';
 import { Department } from './pages/department/department';
 import { Designation } from './pages/designation/designation';
 import { EmployeeList } from './pages/employee-list/employee-list';
+import { Header } from './pages/header/header';
 
 export const routes: Routes = [
   {
@@ -18,7 +19,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: Headers,
+    component: Header,
     children: [
       {
         path: 'dashboard',

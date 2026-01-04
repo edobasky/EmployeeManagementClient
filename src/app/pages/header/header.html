@@ -1,1 +1,202 @@
-<p>header works!</p>
+<!-- Main Container -->
+<div class="container-fluid">
+  <div class="row">
+    
+    <!-- Sidebar -->
+    <nav id="sidebar" 
+         class="col-md-2 col-lg-2 d-md-block sidebar" 
+         [ngClass]="{'collapsed': !sidebarOpen, 'show': sidebarOpen}">
+      
+      <!-- Sidebar Header with Toggle Button -->
+      <div class="sidebar-header d-flex align-items-center justify-content-between p-3">
+        <h4 class="mb-0" *ngIf="sidebarOpen">Employee Management</h4>
+        <h4 class="mb-0 text-center" *ngIf="!sidebarOpen">EM</h4>
+        
+        <!-- Toggle Button (Hamburger inside sidebar) -->
+        <button class="btn btn-link text-white" 
+                (click)="toggleSidebar()"
+                aria-label="Toggle sidebar">
+          <i class="fas" 
+             [ngClass]="{'fa-bars': !sidebarOpen, 'fa-times': sidebarOpen}"></i>
+        </button>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/dashboard" routerLinkActive="active">
+              <i class="fas fa-tachometer-alt me-2"></i>
+              <span *ngIf="sidebarOpen">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/employee-list" routerLinkActive="active">
+              <i class="fas fa-users me-2"></i>
+              <span *ngIf="sidebarOpen">Employees</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/department" routerLinkActive="active">
+              <i class="fas fa-building me-2"></i>
+              <span *ngIf="sidebarOpen">Departments</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/designation" routerLinkActive="active">
+              <i class="fas fa-chart-bar me-2"></i>
+              <span *ngIf="sidebarOpen">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/reports" routerLinkActive="active">
+              <i class="fas fa-chart-bar me-2"></i>
+              <span *ngIf="sidebarOpen">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/settings" routerLinkActive="active">
+              <i class="fas fa-cog me-2"></i>
+              <span *ngIf="sidebarOpen">Settings</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- User Info (shown when sidebar is open) -->
+        <div class="user-info mt-auto p-3" *ngIf="sidebarOpen">
+          <div class="d-flex align-items-center">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=0D8ABC&color=fff" 
+                 alt="User" 
+                 class="rounded-circle me-2" 
+                 width="40" 
+                 height="40">
+            <div>
+              <h6 class="mb-0">Admin User</h6>
+              <small class="text-muted">Administrator</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="col-md-10 ms-sm-auto px-md-4" 
+          [ngClass]="{'col-md-10': sidebarOpen, 'col-md-12': !sidebarOpen}">
+      
+      <!-- Top Navbar (Without hamburger) -->
+      <nav class="navbar navbar-light bg-white border-bottom py-3 mb-4">
+        <div class="container-fluid px-0">
+          <!-- Page Title -->
+          <h1 class="h4 mb-0">
+            Dashboard
+            <small class="text-muted fs-6 ms-2">
+              <i class="fas fa-globe me-1"></i>
+            </small>
+          </h1>
+
+          <!-- Top Right Actions -->
+          <div class="d-flex align-items-center">
+            <!-- Notifications -->
+            <div class="dropdown me-3">
+              <button class="btn btn-light position-relative" 
+                      type="button" 
+                      data-bs-toggle="dropdown">
+                <i class="fas fa-bell"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  3
+                </span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">New employee added</a></li>
+                <li><a class="dropdown-item" href="#">Leave request pending</a></li>
+                <li><a class="dropdown-item" href="#">Report generated</a></li>
+              </ul>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="d-none d-md-flex align-items-center me-4">
+              <div class="text-end">
+                <div class="small text-muted">Active Employees</div>
+                <div class="h6 mb-0">27</div>
+              </div>
+              <div class="vr mx-3"></div>
+              <div class="text-end">
+                <div class="small text-muted">Departments</div>
+                <div class="h6 mb-0">8</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content -->
+      <div class="content-area">
+        <!-- Your router-outlet or page content goes here -->
+
+          <!-- Or static content -->
+        <!-- <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h2>Welcome to Employee Management System</h2>
+        </div> -->
+        
+        <!-- Summary Cards -->
+        <!-- <div class="row mb-4">
+          <div class="col-md-3">
+            <div class="card border-primary">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="text-muted">Total Employees</h6>
+                    <h3 class="mb-0">127</h3>
+                  </div>
+                  <i class="fas fa-users fa-2x text-primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card border-success">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="text-muted">Active Today</h6>
+                    <h3 class="mb-0">89</h3>
+                  </div>
+                  <i class="fas fa-user-check fa-2x text-success"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card border-warning">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="text-muted">On Leave</h6>
+                    <h3 class="mb-0">12</h3>
+                  </div>
+                  <i class="fas fa-calendar-minus fa-2x text-warning"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card border-info">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="text-muted">Departments</h6>
+                    <h3 class="mb-0">8</h3>
+                  </div>
+                  <i class="fas fa-building fa-2x text-info"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <router-outlet></router-outlet>
+        
+      
+      </div>
+    </main>
+  </div>
+</div>

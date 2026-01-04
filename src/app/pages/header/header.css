@@ -1,0 +1,177 @@
+/* Sidebar Styles */
+.sidebar {
+  background: linear-gradient(180deg, #2c3e50 0%, #1a252f 100%);
+  color: white;
+  min-height: 100vh;
+  padding: 0;
+  transition: all 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 250px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar-header {
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-sticky {
+  height: calc(100vh - 80px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar Navigation */
+.nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  padding: 12px 20px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white !important;
+  border-left-color: #3498db;
+}
+
+.nav-link.active {
+  background: rgba(52, 152, 219, 0.2);
+  color: white !important;
+  border-left-color: #3498db;
+}
+
+/* Collapsed Sidebar Styles */
+.sidebar.collapsed .sidebar-header h4:first-child,
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed .user-info {
+  display: none !important;
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center !important;
+  padding: 1rem !important;
+}
+
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 15px !important;
+}
+
+.sidebar.collapsed .nav-link i {
+  margin-right: 0 !important;
+  font-size: 1.2rem;
+}
+
+/* Main Content Area */
+main {
+  margin-left: 250px;
+  transition: all 0.3s;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.sidebar.collapsed ~ main {
+  margin-left: 70px;
+}
+
+/* Top Navbar */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+}
+
+/* Content Area */
+.content-area {
+  padding: 0 1rem;
+}
+
+/* Cards */
+.card {
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge */
+.badge {
+  font-size: 0.6rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Scrollbar Styling for Sidebar */
+.sidebar-sticky::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-sticky::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-sticky::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.sidebar-sticky::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 250px !important;
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  main {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+  
+  .navbar-toggler {
+    display: block !important;
+  }
+}
+
+/* Utility Classes */
+.vr {
+  width: 1px;
+  height: 30px;
+  background-color: #dee2e6;
+  opacity: 1;
+}
+
+.user-info {
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* FontAwesome icon adjustments */
+.fas {
+  width: 20px;
+  text-align: center;
+}
