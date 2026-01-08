@@ -21,6 +21,17 @@ export class Department implements OnInit {
     this.getAllDepartments();
   }
 
+  onEdit(data : DepartmentModel) {
+    const strData = JSON.stringify(data);
+    const parseData = JSON.parse(strData);
+    // the above code meant to destroy the effect of ngmodel two way binding when doing edit.change parseData to data below to see why.
+    this.newDepObj = parseData;
+  }
+
+  onReset() {
+    this.newDepObj = new DepartmentModel();
+  }
+
   getAllDepartments() {
     this.masterService.getAllDept().subscribe({
       next: (result: any) => {
@@ -31,9 +42,43 @@ export class Department implements OnInit {
     });
   }
 
+  // ================= UPDATE DEPT ===============
+  onUpdateDept() {
+    debugger;
+    console.log(this.newDepObj);
+    this.masterService.updateDept(this.newDepObj).subscribe({
+      next : (result : any) => {
+        this.getAllDepartments();
+        alert('Department update successfully!');
+      },
+      error : (error) => {
+        debugger;
+        alert(error.error);
+      }
+    })
+  }
+
+  // ================= DELETE DEPT ==================
+  onDelete(id : number) {
+    alert("Are you sure you want to delete this department");
+    const isDelete = confirm("Are you sure you want to Delete");
+    if (isDelete) {
+       debugger;
+    this.masterService.deleteDept(id).subscribe({
+      next: (result : any) => {
+        this.getAllDepartments();
+        alert("Department deleted successfully");
+      },
+      error : (error) => {
+        alert(error.error);
+      }
+    })
+    }
+  }
+
+  // ==================SAVE DEPT =================
   onSaveDept() {
     debugger;
-    this.newDepObj.departmentName.toUpperCase;
     this.masterService.saveDept(this.newDepObj).subscribe({
       next: (result: any) => {
         //  debugger;
