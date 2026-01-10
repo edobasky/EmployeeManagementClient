@@ -1,1 +1,76 @@
-<p>designation works!</p>
+
+
+<div class="container my-5">
+
+  <!-- ===== FORM ROW ===== -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Designation Management</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="designationForm" class="row align-items-end g-3">
+
+        <!-- Department Dropdown -->
+        <div class="col-md-4">
+          <label for="departmentId" class="form-label">Department</label>
+          <select formControlName="departmentId" class="form-select" id="departmentId" name="departmentId" required>
+            <option selected disabled>-- Select Department --</option>
+            @for (item of departmentList; track $index) {
+              <option [value]="item.departmentId">{{item.departmentName}}</option>
+            }
+            <!-- Add more departments as needed -->
+          </select>
+        </div>
+
+        <!-- Designation Name -->
+        <div class="col-md-4">
+          <label for="designationName" class="form-label">Designation Name</label>
+          <input formControlName="designationName" type="text" class="form-control" id="designationName" name="designationName" placeholder="Enter designation name" maxlength="50" required>
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-md-4 d-flex gap-2">
+          <button (click)="onSave()" type="submit" class="btn btn-primary">Save</button>
+          <button type="reset" class="btn btn-outline-secondary">Reset</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== TABLE ===== -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-light">
+      <strong>Designations</strong>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 10%;">#</th>
+            <th>Department</th>
+            <th>Designation Name</th>
+            <th style="width: 15%;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Static sample rows -->
+           @for (item of $designationList | async; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.departmentName }}</td>
+            <td>{{ item.designationName }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-secondary mx-2" (click)="onEdit(item)">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="onDelete(item.designationId)">Delete</button>
+            </td>
+           
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
