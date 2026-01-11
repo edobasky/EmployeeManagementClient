@@ -23,8 +23,10 @@
 
       <!-- Sidebar Menu -->
       <div class="sidebar-sticky pt-3">
+       
         <ul class="nav flex-column">
-          <li class="nav-item">
+           @if (loggedEmpData.role == "HR") {
+             <li class="nav-item">
             <a class="nav-link active" routerLink="/dashboard" routerLinkActive="active">
               <i class="fas fa-tachometer-alt me-2"></i>
               <span *ngIf="sidebarOpen">Dashboard</span>
@@ -34,6 +36,12 @@
             <a class="nav-link" routerLink="/employee-list" routerLinkActive="active">
               <i class="fas fa-users me-2"></i>
               <span *ngIf="sidebarOpen">Employees</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/new-employee/0 " routerLinkActive="active">
+               <i class="fas fa-user me-2"></i>
+              <span *ngIf="sidebarOpen">New Employee</span>
             </a>
           </li>
           <li class="nav-item">
@@ -60,6 +68,27 @@
               <span *ngIf="sidebarOpen">Settings</span>
             </a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/settings" routerLinkActive="active" (click)="onLogOff()">
+              <i class="fa fa-sign-out-alt"></i>
+              <span *ngIf="sidebarOpen">Logout</span>
+            </a>
+          </li>
+           }@else {
+             <li class="nav-item">
+            <a class="nav-link" routerLink="/new-employee/0 " routerLinkActive="active">
+               <i class="fas fa-user me-2"></i>
+              <span *ngIf="sidebarOpen">New Employee</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" routerLink="/settings" routerLinkActive="active" (click)="onLogOff()">
+              <i class="fa fa-sign-out-alt"></i>
+              <span *ngIf="sidebarOpen">Logout</span>
+            </a>
+          </li>
+           }
+         
         </ul>
 
         <!-- User Info (shown when sidebar is open) -->

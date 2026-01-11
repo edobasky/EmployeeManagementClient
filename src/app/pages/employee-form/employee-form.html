@@ -1,1 +1,96 @@
-<p>employee-form works!</p>
+<body class="bg-light">
+  <div class="container my-5">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Employee Registration Form</h4>
+      </div>
+
+      <div class="card-body">
+        <!-- Personal Information -->
+        <h5 class="border-bottom pb-2 mb-3">Personal Information</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Employee Name</label>
+            <input type="text" [(ngModel)]="newEmployeeObj.name" class="form-control" placeholder="Enter full name" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input type="email" [(ngModel)]="newEmployeeObj.email" class="form-control" placeholder="Enter email address" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Contact Number</label>
+            <input type="text" [(ngModel)]="newEmployeeObj.contactNo" class="form-control" placeholder="Primary contact number" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Alternate Contact Number</label>
+            <input type="text" [(ngModel)]="newEmployeeObj.altContactNo" class="form-control" placeholder="Optional alternate number" />
+          </div>
+        </div>
+
+        <!-- Address Details -->
+        <h5 class="border-bottom pb-2 mt-4 mb-3">Address Details</h5>
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Address</label>
+            <textarea [(ngModel)]="newEmployeeObj.address" class="form-control" rows="2" placeholder="Street address"></textarea>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">City</label>
+            <input type="text" [(ngModel)]="newEmployeeObj.city" class="form-control" placeholder="City" />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">State</label>
+            <input type="text" [(ngModel)]="newEmployeeObj.state" class="form-control" placeholder="State" />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Pincode</label>
+            <input type="text" [(ngModel)]="newEmployeeObj.pincode" class="form-control" placeholder="Pincode" />
+          </div>
+        </div>
+
+        <!-- Employment Details -->
+        <h5 class="border-bottom pb-2 mt-4 mb-3">Employment Details</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Designation</label>
+            <select [disabled]="loggedEmpData.role !== 'HR'" [(ngModel)]="newEmployeeObj.designationId" class="form-select">
+              <option selected>Select designation</option>
+              @for (item of $designationList | async; track $index) {
+                      <option [value]="item.designationId">
+                        {{item.departmentName}} -
+                        {{item.designationName}}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Role</label>
+            <select [disabled]="loggedEmpData.role !== 'HR'" class="form-select" [(ngModel)]="newEmployeeObj.role">
+              <option selected>Select role</option>
+              <option>HR</option>
+              <option>Employee</option>
+            </select>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        @if (newEmployeeObj.employeeId == 0) {
+              <button type="button" class="btn btn-primary" (click)="onSaveEmp()">
+            <i class="fa-solid fa-floppy-disk me-1"></i>
+            Save Employee</button>
+        }@else {
+              <button type="button" class="btn btn-outline-warning" (click)="onUpdate()">
+            <i class="fa-solid fa-floppy-disk me-1"></i>
+            Update Employee</button>
+        }
+        </div>
+      </div>
+    </div>
+  </div>

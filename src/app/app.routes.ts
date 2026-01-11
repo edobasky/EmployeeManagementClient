@@ -26,7 +26,7 @@ export const routes: Routes = [
         component: Dashboard,
       },
       {
-        path: 'new-employee',
+        path: 'new-employee/:id',
         component: EmployeeForm,
       },
       {

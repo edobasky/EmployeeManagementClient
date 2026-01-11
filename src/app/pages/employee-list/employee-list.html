@@ -1,1 +1,54 @@
-<p>employee-list works!</p>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Employee List</h5>
+    </div>
+
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle mb-0">
+          <thead class="table-dark text-center">
+          
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Contact No</th>
+              <th>Email</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Pincode</th>
+              <th>Designation</th>
+              <th>Department</th>
+              <th>Role</th>
+              <th>Created Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              @for (item of EmployeeeList(); track $index){
+                 <tr>
+              <td class="text-center">{{$index+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.contactNo}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.city}}</td>
+              <td>{{item.state}}</td>
+              <td>{{item.pincode}}</td>
+              <td>{{item.designationName}}</td>
+              <td>{{item.departmentName}}</td>
+              <td>{{item.role}}</td>
+              <td>{{item.createdDate.split('T')[0]}}</td>
+              <td class="text-center">
+            <button [routerLink]="'/new-employee/' + item.employeeId" class="btn btn-sm btn-warning mx-2">Edit</button>
+            <button class="btn btn-sm btn-danger">Delete</button>
+            
+            </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
